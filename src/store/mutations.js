@@ -1,5 +1,6 @@
 export const updateTradeResult =(state,payload)=>{
-
-// değerleri güncelleme yapıcaz
-
+  state.purchase +=parseFloat(payload.purchase) * parseInt(payload.count) ;
+  state.sale +=parseFloat(payload.sale) * parseInt(payload.count) ;
+  state.blance = parseFloat(state.sale) - parseFloat(state.purchase);
+ 
 }

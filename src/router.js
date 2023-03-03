@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import  Auth from "./components/auth/Auth"
 
 import ProductList from "./components/products/ProductList"
@@ -17,9 +18,6 @@ const routes=[
     // {path:"/cv",component:},
       
 ]
-
-  
-
 
 export const router=new VueRouter({
     mode:"history",

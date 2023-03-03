@@ -10,11 +10,8 @@ Vue.use(Vuex);
 
 export const store =new Vuex.Store({
     state:{
-       //satın alma
         purchase:0.0,
-       //ürün cıkışı 
         sale:0.0,
-        //sale-purchase
         blance:0.0
 
     },
