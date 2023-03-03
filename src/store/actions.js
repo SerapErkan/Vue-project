@@ -21,5 +21,9 @@ Vue.http.put("https://productoperations-deece-default-rtdb.firebaseio.com/trade-
 export const  getTradeResult=({commit})=>{
 
     // firebase baglan state güncelle  
+Vue.http.get("https://productoperations-deece-default-rtdb.firebaseio.com/trade-result.json")
+.then((response)=>{
+commit("updateTradeResult",response.body);
+})
 
  }

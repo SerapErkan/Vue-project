@@ -16,7 +16,12 @@ export default {
     appHeader: Header,
     appFooter: Footer,
     appCompanies:Companies
+  },
+  created(){
+    this.$store.dispatch("getTradeResult");
   }
+
+
 };
 </script>
 <style></style>
