@@ -10,13 +10,13 @@
               type="button"
               class="btn btn-outline-warning btn-lg px-4 me-sm-3 fw-bold"
             >
-            Alış Tutarı :<span class="badge bg-secondary ms-1">{{Result.purchase}}</span>
+            Alış Tutarı :<span class="badge bg-secondary ms-1">{{Result.purchase | currency}}</span>
             </button>
             <button type="button" class="btn btn-outline-light btn-lg px-4">
-              Satış Tutarı :<span class="badge bg-secondary ms-1">{{Result.sale}}</span>
+              Satış Tutarı :<span class="badge bg-secondary ms-1">{{Result.sale | currency}}</span>
             </button>
             <button type="button" class="btn btn-outline-danger btn-lg px-4">
-              Bakiye :<span class="badge bg-secondary ms-5">  {{ Result.blance}}</span>
+              Bakiye :<span class="badge bg-secondary ms-5">  {{ Result.blance | currency}}</span>
             </button>
 
 
