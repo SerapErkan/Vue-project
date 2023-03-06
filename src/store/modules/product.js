@@ -1,5 +1,6 @@
 
 import Vue from "vue";
+import {router } from "../../router";
 
 const state = {
   products: []
@@ -50,8 +51,8 @@ let tradeResult={
   sale:0.0
 
 }
-
 dispatch("setTradeResult",tradeResult);
+router.replace("/");
 
     })
   
