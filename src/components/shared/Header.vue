@@ -19,78 +19,69 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
+            <router-link
+              active-class="active"
+              to="/cv"
+              exact
+              tag="li"
+              class="nav-item"
+            >
               <a class="nav-link active" aria-current="page">CV</a>
-            </li>
+            </router-link>
             <li class="nav-item">
-           <!-- dropdowns -->
-  <div class="btn-group">
-  <button type="button" class="btn btn-danger">Products</button>
-  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="visually-hidden">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu">
+              <!-- dropdowns -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger">Products</button>
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <router-link active-class="active" to="/" exact tag="li">
+                    <a class="dropdown-item">Product List</a>
+                  </router-link>
 
-    <router-link
-    active-class="active"
-    to="/"
-    exact
-    tag="li"
-    >
-<a class="dropdown-item"  >Product List</a>
-    </router-link>
+                  <router-link active-class="active" to="/" exact tag="li">
+                  </router-link>
 
-    <router-link
-    active-class="active"
-    to="/"
-    exact
-    tag="li"
-    >
+                  <router-link
+                    active-class="active"
+                    to="/p-sell"
+                    exact
+                    tag="li"
+                  >
+                    <a class="dropdown-item">Product Sell</a>
+                  </router-link>
 
-    </router-link>
+                  <router-link
+                    active-class="active"
+                    to="/p-purchase"
+                    exact
+                    tag="li"
+                  >
+                    <a class="dropdown-item">Product Purchase</a>
+                  </router-link>
 
-    <router-link
-    active-class="active"
-    to="/p-sell"
-    exact
-    tag="li"
-    >
-<a class="dropdown-item" >Product Sell</a>
-    </router-link>
+                  <li><hr class="dropdown-divider" /></li>
 
-    <router-link
-    active-class="active"
-    to="/p-purchase"
-    exact
-    tag="li"
-    >
-<a class="dropdown-item" >Product Purchase</a>
-    </router-link>
-
- <li><hr class="dropdown-divider"></li>
-
- <router-link
-    active-class="active"
-    to="/cv"
-    exact
-    tag="li"
-    >
-<a class="dropdown-item" >Cv-Update</a>
-    </router-link>
-   
-
-  </ul>
-</div>
+                  <router-link active-class="active" to="/cv" exact tag="li">
+                    <a class="dropdown-item">Cv-Update</a>
+                  </router-link>
+                </ul>
+              </div>
             </li>
-           
           </ul>
 
-<router-link to="/auth">
-     <a class="nav-link me-3 ">
-        <i class="fa-solid fa-user me-2"></i>Login
-     </a>
-</router-link>
-       
+          <router-link to="/auth">
+            <a class="nav-link me-3 ">
+              <i class="fa-solid fa-user me-2"></i>Login
+            </a>
+          </router-link>
+
           <a class="nav-link me-3 ">
             <i class="fa-sharp fa-solid fa-star me-2"></i>Favorite
           </a>
@@ -120,63 +111,54 @@
       <a class="nav-link m-3 ">Flash discounts</a>
     </div>
 
-
-<div class=" flex-direction-column scrollmenu" >
-<a >
-  <img class="items"   src="/src/assets/img/1.PNG"  >  
-  <span></span>
-</a>
-<a >
-  <img  class="items"  src="/src/assets/img/2.PNG"  >  
-</a>
-<a>
-  <img   class="items" src="/src/assets/img/3.PNG"  >  
-</a>
-<a>
-  <img  class="items"  src="/src/assets/img/4.PNG"  >  
-</a>
-<a>
-  <img   class="items" src="/src/assets/img/5.PNG"  >  
-</a>
-<a>
-  <img  class="items"  src="/src/assets/img/6.PNG"  >  
-</a>
-<a>
-  <img  class="items"  src="/src/assets/img/7.PNG"  >  
-</a>
-<a>
-  <img   class="items" src="/src/assets/img/8.PNG"  >  
-</a>
-<a>
-  <img   class="items" src="/src/assets/img/9.PNG"  >  
-</a>
-<a>
-  <img  class="items"  src="/src/assets/img/10.PNG"  >  
-</a>
-<a>
-  <img class="items"   src="/src/assets/img/11.PNG"  >  
-</a>
-<a>
-  <img   class="items" src="/src/assets/img/12.PNG"  >  
-</a>
-   
-</div>
-
-
- 
+    <div class=" flex-direction-column scrollmenu">
+      <a>
+        <img class="items" src="/src/assets/img/1.PNG" />
+        <span></span>
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/2.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/3.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/4.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/5.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/6.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/7.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/8.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/9.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/10.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/11.PNG" />
+      </a>
+      <a>
+        <img class="items" src="/src/assets/img/12.PNG" />
+      </a>
+    </div>
   </header>
 </template>
 
 <script>
-
-export default{
-  data(){
-   
-    return{
-   
-    }
+export default {
+  data() {
+    return {};
   }
-}
+};
 </script>
 <style>
 .bg {
@@ -187,10 +169,9 @@ export default{
   vertical-align: middle;
   width: 150px;
   height: 150px;
-  margin-left:5px; 
-
+  margin-left: 5px;
 }
-  .scrollmenu {
+.scrollmenu {
   overflow: auto;
   white-space: nowrap;
 }

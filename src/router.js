@@ -6,7 +6,7 @@ import  Auth from "./components/auth/Auth"
 import ProductList from "./components/products/ProductList"
 import ProductSell from "./components/products/ProductSell"
 import ProductPurchase from "./components/products/ProductPurchase"
-
+import cv from "./components/auth/cv/cv"
 Vue.use(VueRouter);
 
 const routes=[
@@ -15,8 +15,9 @@ const routes=[
 
     {path:"/p-sell",component:ProductSell},
     {path:"/p-purchase",component:ProductPurchase},
-    // {path:"/cv",component:},
-      
+
+    {path:"/cv",component:cv},
+  
 ]
 
 export const router=new VueRouter({
