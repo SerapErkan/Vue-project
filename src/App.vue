@@ -1,7 +1,10 @@
 <template>
   <div>
     <appHeader></appHeader>
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+       <router-view></router-view> 
+    </transition>
+  
     <appFooter></appFooter>
     <appCompanies></appCompanies>
   </div>
@@ -24,4 +27,20 @@ export default {
 
 };
 </script>
-<style></style>
+<style>
+
+.fade-enter{
+opacity: 0;
+}
+.fade-enter-activr{
+transition:opasity .3s ease-in-out;
+}
+.fade-leave{
+
+}
+.fade-leave-active{
+transition: opacity .3s ease-out ;
+opacity: 0;
+}
+
+</style>
