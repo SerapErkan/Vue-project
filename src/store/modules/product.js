@@ -28,6 +28,20 @@ const actions = {
 // asenkron 
 initApp({commit}){
     // vue Resource işlemleri 
+Vue.http.get("https://productoperations-deece-default-rtdb.firebaseio.com/products.json")
+.then((res)=>{
+ let data=res.body;
+
+//  console.log("res-body",data);
+for (let key in data){
+
+  data[key].key=key;
+  // console.log("key",data[key]);
+
+  commit("updateProductList",data[key]);
+}
+
+})
 },
 saveProduct({dispatch,commit,state},payload){
   // vue Resource işlemleri 
