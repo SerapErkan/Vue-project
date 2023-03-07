@@ -6,7 +6,14 @@
           <div class="card shadow-sm">
             <img src="../../assets/logo.png" class="p-5" />
             <div class="card-body">
-              <p class="card-text">{{ product.title}}</p>
+              <h6 class="card-text">{{ product.key}}</h6>
+              <h2 class="card-text">{{ product.title}}</h2>
+              <h4 :class="getCountClasses(product.count)">count: {{ product.count }} </h4>
+                <h5> {{ product.price |currency}} </h5>
+              
+              <p class="card-text">{{ product.description}}</p>
+            
+
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button
@@ -31,7 +38,7 @@
       </div>
       <div class="alert alert-warning mt-5" v-else >
             <strong>Henüz Burada Bir Kayıt Bulamadık</strong>
-            <br>
+            <br >
             <small>Kayıt Eklemek için Ürün İşlemleri menüsünden yararlanabilirsiniz
             </small>
           </div>
@@ -46,6 +53,17 @@ export default {
     ...mapGetters({
       products: "getPoducts"
     })
+  },
+  methods:{
+    getCountClasses(count){
+      return{
+         'bg-danger' : count == 0 || count==null ,
+         'bg-success' : count > 0,
+      }
+    
+    }
+  
   }
 };
 </script>
+
