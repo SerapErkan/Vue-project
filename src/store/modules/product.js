@@ -12,7 +12,14 @@ const getters = {
     return state.products;
   },
   getPoduct(state) {
-    //ürünün detaylarını getiricek   
+//ürünün detaylarını getiricek   
+//  filter ile gelene key değerine eşitse detay getir 
+// özel bir durum 
+return key =>state.products.filter(el=>{
+return el.key==key;
+  
+})
+
   }
 
 
