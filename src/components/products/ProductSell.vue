@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <!-- <div class="loading" >
+    <div class="loading" :style="isLoading" >
       <div class="lds-ripple">
         <div></div>
         <div></div>
       </div>
-    </div> -->
+    </div>
     <div class="row">
       <div class="col-6 offset-3 pt-3 card mt-5 shadow">
         <div class="card-body">
@@ -51,17 +51,19 @@
               </div>
             </div>
           </transition>
-          <div class="form-group">
+          <div class="form-group"  v-if="product !== null" >
             <label>Adet</label>
             <input
+            :style=" danger" 
               type="text"
               class="form-control"
               placeholder="Ürün adetini giriniz.."
               v-model="selectedCount"
+             
             />
           </div>
           <hr />
-          <button class="btn btn-primary" @click="save">Kaydet</button>
+          <button class="btn btn-primary" :disabled=" saveEnabled" @click="save">Kaydet</button>
         </div>
       </div>
     </div>
@@ -75,13 +77,50 @@ export default {
     return {
       selectedProduct: null,
       product: null,
-      selectedCount: null
+      selectedCount: null,
+      saveButtonClicked:false,
     };
   },
   computed: {
     ...mapGetters({
       products: "getPoducts"
-    })
+    }),
+
+  saveEnabled() {
+      if (
+        this.selectedProduct !== null &&
+        this.selectedCount> 0 && this.selectedCount < this.product.count
+
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+
+    isLoading() {
+      if (this.saveButtonClicked) {
+        return {
+          display: "block"
+        };
+      } else {
+        return {
+          display: "none"
+        };
+      }
+    },
+    danger() {
+      if (this.selectedCount>this.product.count) {
+        return {
+          border: "5px solid red"
+        }
+      } else{
+        return{
+          border: "2px dashed " 
+        };
+      }
+
+    }
   },
 
   methods: {
@@ -93,12 +132,36 @@ export default {
       // console.log(this.product.price);
     },
     save() {
+      this.saveButtonClicked=true;
       let product = {
         key: this.selectedProduct, // key
         count: this.selectedCount // adet-count
       };
       this.$store.dispatch("sellProduct", product);
+      
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    if (
+      (this.selectedProduct !== null || this.selectedCount > 0) && !this.saveButtonClicked) {
+      // herhangi bir işlem yapılmışşsa mesajla soralım
+      if (
+        confirm(
+          "Kaydedilmemeiş değişiklikler var .Yinede cıkış yapmak istermisiniz.."
+        )
+      ) {
+        next();
+      } else {
+        next(false);
+      }
+    } else {
+      next();
     }
   }
 };
 </script>
+<!-- <style scoped>
+  .border-danger {
+    border-style: dashed !important;
+  }
+</style> -->
