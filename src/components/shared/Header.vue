@@ -19,22 +19,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <router-link
-              active-class="active"
-              to="/cv"
-              exact
-              tag="li"
-              class="nav-item"
-            >
-              <a class="nav-link active" aria-current="page">CV</a>
-            </router-link>
             <li class="nav-item">
               <!-- dropdowns -->
               <div class="btn-group">
-                <button type="button" class="btn btn-danger">Products</button>
+                <button type="button" class="btn btn-secondary">Products</button>
                 <button
                   type="button"
-                  class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                  class="btn btn-light dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -68,9 +59,7 @@
 
                   <li><hr class="dropdown-divider" /></li>
 
-                  <router-link active-class="active" to="/cv" exact tag="li">
-                    <a class="dropdown-item">Cv-Update</a>
-                  </router-link>
+                 
                 </ul>
               </div>
             </li>

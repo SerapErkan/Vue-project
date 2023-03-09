@@ -1,25 +1,21 @@
 <template>
 
-    <div class="bg-dark text-secondary px-4 py-5 text-center ">
-      <div class="py-5">
-        <h1 class="display-5 fw-bold text-white">Footer</h1>
-        <div class="col-lg-6 mx-auto mt-5 ">
+    <div class="bg-warning text-secondary px-1 py-3 text-center fixed-bottom mt-5 " >
+      <div class="px-1">
+ 
+        <div class="col-lg-6 mx-auto  ">
         
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button
-              type="button"
-              class="btn btn-outline-warning btn-lg px-4 me-sm-3 fw-bold"
-            >
-            Alış Tutarı :<span class="badge bg-secondary ms-1">{{Result.purchase | currency}}</span>
+          
+            <button type="button" class="btn btn-light btn-sm ">
+          Alış Tutarı :<span class="badge bg-secondary ms-1">{{Result.purchase | currency}}</span>
             </button>
-            <button type="button" class="btn btn-outline-light btn-lg px-4">
+            <button type="button" class="btn btn-light btn-sm ">
               Satış Tutarı :<span class="badge bg-secondary ms-1">{{Result.sale | currency}}</span>
             </button>
-            <button type="button" class="btn btn-outline-danger btn-lg px-4">
+            <button type="button" class="btn btn-light btn-sm ">
               Bakiye :<span class="badge bg-secondary ms-5">  {{ Result.blance | currency}}</span>
             </button>
-
-
 
           </div>
         </div>
