@@ -9,8 +9,6 @@
         />
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
-        <!-- login -->
-        <!-- //sing up -->
         <form
           @submit.prevent="onSubmit"
           class="p-4 p-md-5 border rounded-3 bg-light"
@@ -22,26 +20,26 @@
               type="text"
               class="form-control"
               :class="{ 'is-invalid': $v.name.$error }"
-              id="floatingInputName"
-              placeholder=" Name"
+              id="name"
+              placeholder="name"
             />
+            <label for="name">First Name</label>
             <small
               v-if="$v.name.$error && !$v.name.required.$initial"
               class="form-text text-danger"
-              >Bu alan zorunludur... <br
+              >This field is required. <br
             /></small>
 
             <small v-if="!$v.name.minLength" class="form-text text-danger"
-              >En az (3) karakter olmalıdır <br />
+              >Your name must be at least 3 characters.<br />
             </small>
             <small
               v-if="$v.name.$error && !$v.name.hasOnlyLetters"
               class="form-text text-danger"
-              >İsminiz sayı içeremez.<br />Lütfen geçerli bir isim giriniz..
-              <br
-            /></small>
-
-            <label for="floatingInputName">First Name</label>
+              >You cannot enter numbers in this field.<br />
+              Please enter a valid name.
+              <br />
+            </small>
           </div>
           <!-- //lastName -->
           <div v-if="!isUser" class="form-floating mb-3">
@@ -50,23 +48,24 @@
               type="text"
               class="form-control"
               :class="{ 'is-invalid': $v.last.$error }"
-              id="floatingInputLast"
-              placeholder="last Name"
+              id="last"
+              placeholder="last"
             />
-            <label for="floatingInputLast">Last Name</label>
+            <label for="last">Last Name</label>
             <small
               v-if="$v.last.$error && !$v.last.required.$initial"
               class="form-text text-danger"
-              >Bu alan zorunludur... <br
+              >This field is required. <br
             /></small>
 
             <small v-if="!$v.last.minLength" class="form-text text-danger"
-              >En az (2) karakter olmalıdır <br />
+              >Your last name must be at least 2 characters. <br />
             </small>
             <small
               v-if="$v.last.$error && !$v.last.hasOnlyLetters"
               class="form-text text-danger"
-              >Soyad sayı içeremez.<br />Lütfen geçerli bir soyad giriniz.. <br
+              >You cannot enter numbers in this field.<br>
+              Please enter a valid last name.. <br
             /></small>
           </div>
           <!-- //email -->
@@ -83,11 +82,11 @@
             <small
               v-if="$v.email.$error && !$v.email.required.$initial"
               class="form-text text-danger"
-              >Bu alan zorunludur... <br
+              >This field is required. <br
             /></small>
 
             <small v-if="!$v.email.email" class="form-text text-danger"
-              >Lütfen geçerli bir e-posta adresi giriniz...<br />
+              >Please enter a valid email address.<br />
             </small>
           </div>
 
@@ -105,29 +104,19 @@
             <small
               v-if="$v.birthdate.$error && !$v.birthdate.required"
               class="form-text text-danger"
-              >Bu alan zorunludur... <br
+              >This field is required.<br
             /></small>
-
-            <!-- <small
-              v-if="!$v.birthdate.minLength || !$v.birthdate.maxLength"
-              class="form-text text-danger"
-              >yyyy formatında 4 haneli bir rakam giriniz <br
-            /></small> -->
 
             <small
               v-if="!$v.birthdate.isValidDate && $v.birthdate.isValid"
               class="form-text text-danger"
             >
-              18 yaşından küçükler giremez..<br />
+              Not suitable for individuals under 18 years of age.<br />
             </small>
-            <!-- <small v-if="!$v.birthdate.numeric" class="form-text text-danger">
-              Bu alana karakter girilmez sadece: sayı <br />
-            </small> -->
 
             <small v-if="!$v.birthdate.isValid" class="form-text text-danger">
-              Gelecek tarihde bir değer giremezsiniz ..<br />
+              You cannot enter a value in this field for future dates.<br />
             </small>
-
           </div>
           <!-- //password -->
           <div class="form-floating mb-3">
@@ -136,31 +125,31 @@
               type="password"
               class="form-control"
               :class="{ 'is-invalid': $v.password.$error }"
-              id="floatingPassword"
-              placeholder="Password"
+              id="password"
+              placeholder="password"
             />
-            <label for="floatingPassword">Password</label>
+            <label for="password">Password</label>
 
             <small
               v-if="$v.password.$error && !$v.password.required.$initial"
               class="form-text text-danger"
-              >Bu alan zorunludur...<br />
+              >This field is required.<br />
             </small>
             <small v-if="!$v.password.minLength" class="form-text text-danger"
-              >Lütfen min(5) karakter giriniz <br />
+              >Your password must contain at least 5 characters. <br />
             </small>
             <small v-if="!$v.password.maxLength" class="form-text text-danger"
-              >Lütfen max(10) karakter giriniz <br />
+              >Your password cannot exceed 10 characters. <br />
             </small>
             <small
               v-if="$v.password.$error && !$v.password.hasOneCharacter"
               class="form-text text-danger"
-              >Lütfenen az bir karakter giriniz <br />
+              >Please use at least one letter. <br />
             </small>
             <small
               v-if="$v.password.$error && !$v.password.hasOneNumber"
               class="form-text text-danger"
-              >Lütfenen az bir rakam giriniz <br />
+              >Please use at least one number. <br />
             </small>
           </div>
 
@@ -171,27 +160,27 @@
               type="password"
               :class="{ 'is-invalid': $v.repassword.$error }"
               class="form-control"
-              id="floatingRePassword2"
+              id="rePassword2"
               placeholder="re-password"
             />
-            <label for="floatingRePassword">Re-Password</label>
+            <label for="rePassword">Re-Password</label>
 
             <small
               v-if="$v.repassword.$error && !$v.repassword.required.$initial"
               class="form-text text-danger"
-              >Bu alan zorunludur... <br
+              >This field is required.<br
             /></small>
 
             <small v-if="!$v.repassword.minLength" class="form-text text-danger"
-              >Lütfen min(5) karakter giriniz <br />
+              >Your password must contain at least 5 characters. <br />
             </small>
             <small v-if="!$v.repassword.maxLength" class="form-text text-danger"
-              >Lütfen max(10) karakter giriniz<br />
+              >Your password cannot exceed 10 characters.<br />
             </small>
             <small
               v-if="$v.repassword.$error && !$v.repassword.sameAs"
               class="form-text text-danger"
-              >Parola tekrarınız uyuş muyor <br />
+              >Your password does not match the confirmation. <br />
             </small>
           </div>
 
@@ -227,7 +216,6 @@
         </form>
       </div>
     </div>
-    <!-- {{ $v.birthdate }} -->
   </div>
 </template>
 
@@ -235,13 +223,9 @@
 import {
   required,
   email,
-  numeric,
   minLength,
   maxLength,
-  sameAs,
-  between,
-  regex,
-  withParams
+  sameAs
 } from "vuelidate/lib/validators";
 export default {
   data() {
@@ -252,9 +236,7 @@ export default {
       email: null,
       password: "",
       repassword: "",
-      isUser: false,
-
-      dateOfBirth: null
+      isUser: false
     };
   },
   methods: {
@@ -298,7 +280,7 @@ export default {
       //custom
 
       required,
-         isValidDate: (value) => {
+      isValidDate: value => {
         const dateString = value;
         const year = new Date(dateString).getFullYear();
         // console.log(year); // 2023
@@ -315,7 +297,6 @@ export default {
         // console.log(age); //age
         return age <= 0 ? false : true;
       }
-
     },
     password: {
       required,
@@ -327,16 +308,13 @@ export default {
       hasOneNumber(value) {
         return value && value.length > 0 && /\d/.test(value);
       }
-      //  regex: regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/)
     },
     repassword: {
       required,
       minLength: minLength(5),
       maxLength: maxLength(10),
       sameAs: sameAs("password")
-    },
-
-
+    }
   }
 };
 </script>
