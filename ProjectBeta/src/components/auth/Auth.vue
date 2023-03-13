@@ -64,7 +64,7 @@
             <small
               v-if="$v.last.$error && !$v.last.hasOnlyLetters"
               class="form-text text-danger"
-              >You cannot enter numbers in this field.<br>
+              >You cannot enter numbers in this field.<br />
               Please enter a valid last name.. <br
             /></small>
           </div>
@@ -195,7 +195,9 @@
               type="submit"
               :class="{ 'btn-warning': isUser, 'btn-custom': !isUser }"
               class=" w-100 btn btn-lg mb-2"
-              :disabled="$v.$invalid"
+              :disabled="
+                isUser ? $v.email.$invalid || $v.password.$invalid : $v.$invalid
+              "
             >
               {{ isUser ? "Login" : "Sign up" }}
             </button>
@@ -236,7 +238,8 @@ export default {
       email: null,
       password: "",
       repassword: "",
-      isUser: false
+      isUser: false,
+      form: []
     };
   },
   methods: {
@@ -245,16 +248,22 @@ export default {
       console.log(this.isUser);
     },
     onSubmit() {
-      let form = {
-        email: this.email,
-        name: this.name,
-        last: this.last,
-        age: this.age,
-        password: this.password,
-        repassword: this.repassword,
-        isUser: this.isUser
-      };
-      console.log(form);
+      if (!this.isUser) {
+        this.form = {
+          email: this.email,
+          name: this.name,
+          last: this.last,
+          birthdate: this.birthdate,
+          password: this.password
+        };
+      } else {
+        this.form = {
+          email: this.email,
+          password: this.password
+        };
+      }
+
+      this.$store.dispatch("login", { ...this.form, isUser: this.isUser });
     }
   },
   validations: {
