@@ -23,9 +23,6 @@ const mutations = {
   },
   setUser(state, form) {
     state.users = form;
-  },
-  setLocalStorage(state) {
-    localStorage.setItem("Token", state.token);
   }
 };
 const actions = {
@@ -33,11 +30,32 @@ const actions = {
 
   isAuth({ dispatch, commit, state }) {
     let token = localStorage.getItem("Token");
+    let currentPath ="";
     if (token) {
-      commit("setToken", token);
-      router.push("/");
-    } else {
-      router.push("/auth");
+      //token varmı expiresIn geçerlimi
+      let expires = localStorage.getItem("ExpiresIn");
+      let time = new Date().getTime();
+     
+      if (time >= +expires) {
+        console.log("Geçersiz Token");
+        // dispatch("logout");
+      } else {
+        commit("setToken", token);
+        // timer kaldıgı yerden saymaya devam etmeli 
+        dispatch("expiresInTimer", +expires-time);
+
+        currentPath = router.history.current.path;
+        if (currentPath !== "/") {
+          router.push("/");
+        }
+      }
+
+    } 
+    else {
+      currentPath = router.history.current.path;
+      if (currentPath !== "/auth") {
+        router.push("/auth");
+      }
     }
   },
   login({ commit, state, dispatch }, authData) {
@@ -54,9 +72,19 @@ const actions = {
           returnSecureToken: true
         })
         .then(res => {
-          console.log(res.data);
+          console.log("data",res.data);
           commit("setToken", res.data.idToken);
-          commit("setLocalStorage", res.data.idToken);
+
+          // localStorage
+          localStorage.setItem("Token", res.data.idToken);
+          // token dolma süresi time + expiresIn 
+          localStorage.setItem("ExpiresIn",new Date().getTime()+ +res.data.expiresIn*1000 );
+          dispatch("expiresInTimer", +res.data.expiresIn*1000);
+
+          // // ---deneme
+          // localStorage.setItem("ExpiresIn",new Date().getTime() + 10000 );
+          // dispatch("expiresInTimer", +10000); 
+
         });
     } else {
       authLink =
@@ -69,17 +97,37 @@ const actions = {
           returnSecureToken: authData.true
         })
         .then(res => {
-          console.log(res.data);
+          console.log("data", res.data);
           commit("setToken", res.data.idToken);
-          commit("setUser", authData);
-          commit("setLocalStorage", res.data.idToken);
-          // user işlemlerinide yap user firebase yaz
-          // user localID ile giriş yapıldıgında çek
+
+          //  localStorage
+          localStorage.setItem("Token",res.data.token);
+          localStorage.setItem("ExpiresIn",new Date().getTime()+ +res.data.expiresIn*1000);
+          dispatch("expiresInTimer", +res.data.expiresIn*1000);
+          // user işlemleri
+          // user localID 
         });
     }
   },
-  logout({ commit, dispatch, state }) {
+  logout({ commit }) {
     commit("clearToken");
+    localStorage.removeItem("Token");
+    localStorage.removeItem("ExpiresIn");
+    const currentPath = router.history.current.path;
+    if (currentPath !== "/") {
+      router.replace("/");
+    }
+  },
+  expiresInTimer({ dispatch }, expiresIn) {
+    setTimeout(() => {
+      //süre doldugunda token silinmeli
+      // token varsa hala geçerlimi bakmamızlazım
+      // token gibi expiresIn de suanki time  token süresini ekleyelim
+      // ve o süreyi geçmişse token silme yapalım 
+      // expire olacagı süreyi localstorage de tutalım
+
+      dispatch("logout");
+    }, expiresIn);
   }
 };
 
