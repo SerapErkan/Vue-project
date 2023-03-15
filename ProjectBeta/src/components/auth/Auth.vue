@@ -229,6 +229,7 @@ import {
   maxLength,
   sameAs
 } from "vuelidate/lib/validators";
+
 export default {
   data() {
     return {
@@ -263,7 +264,10 @@ export default {
         };
       }
 
-      this.$store.dispatch("login", { ...this.form, isUser: this.isUser });
+      this.$store.dispatch("login", { ...this.form, isUser: this.isUser })
+      .then(res => {
+       this.$router.push("/");
+      })
     }
   },
   validations: {
@@ -329,13 +333,13 @@ export default {
 </script>
 <style>
 .btn-custom {
-  background-color: #9b30ff !important;
-  border-color: #9b30ff !important;
+  background-color: #541fc4 !important;
+  border-color: #541fc4 !important;
   color: white !important;
 }
 .btn-custom:hover {
-  background-color: #9b30ff;
-  border-color: #9b30ff;
+  background-color: #541fc4;
+  border-color: #541fc4;
   color: white;
   transform: scale(1.1);
 }
