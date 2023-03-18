@@ -331,7 +331,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .btn-custom {
   background-color: #541fc4 !important;
   border-color: #541fc4 !important;

@@ -13,8 +13,12 @@ import ProductDetail from "./components/products/ProductDetail";
 import userDetail from "./components/user/userDetail";
 import userCard from "./components/user/userCard";
 import userFavorite from "./components/user/userFavorite";
-
+import userOrders from "./components/user/userOrders"
+import user from ".//components/user/user"
 import NotFound from "./components/shared/NotFound";
+import productPurchase from "./components/admin/productPurchase"
+
+
 
 // admin
 // product add
@@ -27,14 +31,13 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path:"/",
-    component:ProductsList
+    path: "/",
+    exact: true,
+    component: ProductsList
   },
   {
     path: "/auth",
     component: Auth
-
-    
   },
   {
     path: "/pList",
@@ -47,7 +50,8 @@ const routes = [
 
   {
     path: "/user",
-    component: userDetail,
+    component:user,
+    name: "user",
     beforeEnter(to, from, next) {
       if (store.getters.isAuthenticated) {
         next();
@@ -55,8 +59,24 @@ const routes = [
         next("/auth");
       }
     },
-
+    children: [
+      { path: ":id", component: userDetail }, //user/1
+      {
+        path: ":id/userFavorite",
+        component: userFavorite
+      },
+      {
+        path: ":id/userCard",
+        component: userCard
+      },
+      {
+        path: ":id/userOrders",
+        component: userOrders
+      }
+    ]
   },
+
+  {path:"/admin", component:productPurchase},
 
   {
     path: "*",
