@@ -4,7 +4,7 @@ import axios from "axios";
 
 const state = {
   users: [],
-  apiKey: "AIzaSyAWzj8V82J22cIfv8JCaFtuNmzqqpWYkXg",
+  apiKey: "AIzaSyBRECmda8eoIwIJhUdEsUUY5CGOOYSmo-E",
   token: ""
 };
 
@@ -94,6 +94,9 @@ const actions = {
         .post(authLink, {
           email: authData.email,
           password: authData.password,
+          firstName: authData.name,
+          lastName: authData.last,
+          birthdate:authData.birthdate,
           returnSecureToken: authData.true
         })
         .then(res => {
@@ -101,7 +104,7 @@ const actions = {
           commit("setToken", res.data.idToken);
 
           //  localStorage
-          localStorage.setItem("Token",res.data.token);
+          localStorage.setItem("Token",res.data.idToken);
           localStorage.setItem("ExpiresIn",new Date().getTime()+ +res.data.expiresIn*1000);
           dispatch("expiresInTimer", +res.data.expiresIn*1000);
           // user işlemleri
@@ -125,7 +128,6 @@ const actions = {
       // token gibi expiresIn de suanki time  token süresini ekleyelim
       // ve o süreyi geçmişse token silme yapalım 
       // expire olacagı süreyi localstorage de tutalım
-
       dispatch("logout");
     }, expiresIn);
   }
